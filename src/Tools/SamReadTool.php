@@ -49,6 +49,10 @@ abstract class SamReadTool extends SamTool
 
         try {
             $result = $this->run($request, $user);
+        } catch (SamToolDenied $exception) {
+            $this->audit($user, 'denied', null, ['reason' => $exception->reason]);
+
+            return $exception->getMessage();
         } catch (ValidationException $exception) {
             $this->audit($user, 'denied', null, ['reason' => 'validation']);
 
