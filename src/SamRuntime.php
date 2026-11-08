@@ -130,7 +130,10 @@ class SamRuntime
     }
 
     /**
-     * Threads of the actor, newest first, with their message count and last message.
+     * Threads of the actor, newest first, with their message count.
+     *
+     * The last message stays lazy: eager loading it is unbounded and the
+     * conversation menu only renders the title.
      *
      * @return Collection<int, AiConversation>
      */
@@ -140,7 +143,6 @@ class SamRuntime
             ->where('user_id', $actor->getKey())
             ->where('profile', self::PROFILE)
             ->withCount('messages')
-            ->with('latestMessage')
             ->orderByDesc('updated_at')
             ->orderByDesc('created_at')
             ->get();
