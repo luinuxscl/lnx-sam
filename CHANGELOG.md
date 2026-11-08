@@ -5,6 +5,14 @@ Todas las versiones notables de `luinuxscl/lnx-sam`.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado es [SemVer](https://semver.org/lang/es/).
 
+## [0.1.1] - 2026-11-08
+
+### Corregido
+
+- `SamContext::toPrompt()` escapa las etiquetas del JSON (`JSON_HEX_TAG`): un
+  valor tomado de un registro no puede cerrar el bloque `<screen_context>` y
+  hacerse pasar por instrucciones.
+
 ## [0.1.0] - 2026-11-08
 
 Primera versión publicada: extracción del runtime de `App\Ai\Sam` del kit.
