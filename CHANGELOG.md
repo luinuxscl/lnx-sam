@@ -5,6 +5,16 @@ Todas las versiones notables de `luinuxscl/lnx-sam`.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado es [SemVer](https://semver.org/lang/es/).
 
+## [0.2.0] - 2026-11-08
+
+### Añadido
+
+- `SamToolDenied`: un módulo puede rechazar una lectura o una propuesta antes
+  de producir un resultado, con el motivo que corresponde a la auditoría
+  (`forbidden`, `out_of_scope`, `validation`, `failed`). El runtime registra
+  una denegación con ese motivo en lugar de un éxito sin payload, y devuelve
+  al modelo el mensaje que declara el módulo.
+
 ## [0.1.1] - 2026-11-08
 
 ### Corregido
