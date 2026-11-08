@@ -5,6 +5,16 @@ Todas las versiones notables de `luinuxscl/lnx-sam`.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/)
 y el versionado es [SemVer](https://semver.org/lang/es/).
 
+## [0.2.1] - 2026-11-08
+
+### Corregido
+
+- `SamRuntime::conversations()` ya no carga el último mensaje en bloque: la
+  relación `latestMessage` del anfitrión ordenaba por la clave del mensaje, y
+  con UUID en PostgreSQL el agregado `max(uuid)` no existe, así que la lista de
+  conversaciones respondía 500. El contexto solo pinta el título, así que el
+  último mensaje queda como carga diferida.
+
 ## [0.2.0] - 2026-11-08
 
 ### Añadido
