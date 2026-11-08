@@ -128,8 +128,16 @@ posterior, sin cambiar la API pública del paquete.
 
 El runtime vivía en la aplicación como `App\Ai\Sam` y sus comandos como
 `App\Console\Commands\Sam*`. `src/aliases.php` mantiene esos nombres como
-alias, así que las importaciones existentes siguen funcionando mientras el
-host retira su copia. Los alias se eliminarán en la próxima versión mayor.
+alias perezosos, así que una referencia resuelta en runtime sigue funcionando
+mientras el host retira su copia.
+
+**Los alias no cubren declaraciones de tipo.** PHP no autoloada la clase del
+parámetro al comprobar el tipo: `function f(App\Ai\Sam\SamMode $mode)` rechaza
+un `Luinuxscl\LnxSam\SamMode` aunque el alias exista. Lo mismo pasa con las
+claves del contenedor, que son cadenas: `app()->instance('App\Ai\Sam\SamInstructions', …)`
+no afecta a `Luinuxscl\LnxSam\SamInstructions`. Por eso los consumidores
+importan el namespace canónico y los alias se retiran en la próxima versión
+mayor.
 
 ## Pruebas
 
