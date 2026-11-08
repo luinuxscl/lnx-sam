@@ -75,12 +75,16 @@ final class SamContext
 
     /**
      * JSON payload injected into the system instructions.
+     *
+     * Tags are hex-escaped: a label, an id or a filter taken from a record can
+     * contain `</screen_context>`, and the payload must never be able to close
+     * the block that marks it as passive data.
      */
     public function toPrompt(): string
     {
         return (string) json_encode(
             $this->sanitized(),
-            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES,
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG,
         );
     }
 }
